@@ -71,7 +71,7 @@ footer img{
 #events-head{
     display: flex;
     flex-direction: column;
-    background: linear-gradient(180deg, rgb(51, 1, 1) 0%, rgb(117, 6, 6) 100%);
+    background: rgb(23, 23, 23);
     color:white;
 }
 
