@@ -1,24 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=DM+Sans:wght@400..700&display=swap');
 :root {
-    --font-heading: 'Archivo Black', sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
     --font-accent: 'Playfair Display', serif;
-    --font-display: 'Monoton', cursive;
-    --font-body: Arial, sans-serif;
-}
-
-h1 {
-    font-family: var(--font-display);
-}
-
-h1 em {
-    font-family: var(--font-accent);
-    font-style: italic;
-    font-weight: 400;
 }
 
 body {
     font-family: var(--font-body);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+}
+
+em {
+    font-family: var(--font-accent);
+}
+
+.dot{
+    color:red;
 }
 
 body{
@@ -103,10 +103,12 @@ footer img{
     font-size: 55px;
     margin-top: 5px;
     margin-bottom: 5px;
+    margin-left: 10px;
 }
 
 #events-head p{
     align-self: self-end;
+    margin-right: 10px;
 }
 
 #events{
@@ -164,4 +166,5 @@ footer img{
     text-decoration: none;
     padding: 12px;
 }
+
 
