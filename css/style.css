@@ -88,13 +88,56 @@ footer img{
 #events{
     display: flex;
     flex-direction: row;
-    justify-content:space-evenly;
-    align-content: center;
-    background: linear-gradient(180deg, rgb(117, 6, 6) 0%, rgb(0, 0, 0) 100%);
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 40px 20px;
+    background-color: rgb(53, 3, 3);
 }
 
-#events img{
+.event-card{
     width: 30%;
+    min-width: 260px;
+}
+
+.event-card img{
+    width: 100%;
     height: auto;
+    display: block;
+}
+
+.event-info{
+    background-color: #efece3;
+    color: #171717;
+    padding: 16px;
+}
+
+.event-date{
+    font-size: 12px;
+    color: gray;
+    margin: 0;
+}
+
+.event-info h2{
+    margin: 4px 0;
+}
+
+.event-genre{
+    color: gray;
+    margin: 0 0 10px;
+}
+
+.event-location{
+    font-size: 13px;
+    margin: 0 0 14px;
+}
+
+.btn-tickets{
+    display: block;
+    text-align: center;
+    background-color: #171717;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
 }
 
