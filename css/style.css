@@ -1,0 +1,91 @@
+body{
+    background-color: rgb(0, 0, 0);
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    background-color: rgb(23, 23, 23);
+}
+
+header a{
+    color: gray;
+}
+
+header img{
+    height: auto;
+    width: 50px;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+
+footer img{
+    height: 30px;
+    width: auto;
+}
+
+#welcome {
+    position: relative;
+    display: flex;
+    z-index: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 100vh; /* asegúrate de que el div tenga altura */
+    overflow: hidden;
+}
+
+#welcome .bg-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vh;       /* usamos vh porque va rotada 90° */
+    height: 100vw;
+    background-color: red;
+    /*background-image: url('./img/sd-welcome.jpg');
+    background-size: cover;
+    background-position: center;*/
+    transform: translate(-50%, -50%) rotate(90deg);
+    filter: blur(4px) brightness(0.6); /* blur + oscurecido para que el texto se lea */
+    z-index: 1;
+}
+
+#welcome h1{
+    font-size: 100px;
+    z-index: 2;
+}
+
+#welcome p{
+    align-self:flex-end;
+    z-index: 2;
+}
+
+#events-head{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    align-content: center;
+    background-color: rgb(187, 23, 23);
+}
+
+#events{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    align-content: center;
+    background-color: rgb(105, 95, 95);
+}
+
+#events img{
+    width: 30%;
+    height: auto;
+}
+
