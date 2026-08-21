@@ -11,6 +11,7 @@ header {
 }
 
 header a{
+    align-self: center;
     color: gray;
 }
 
@@ -49,12 +50,11 @@ footer img{
     left: 50%;
     width: 100vh;       /* usamos vh porque va rotada 90° */
     height: 100vw;
-    background-color: red;
-    /*background-image: url('./img/sd-welcome.jpg');
+    background-image: url('../img/sd-welcome.jpg');
     background-size: cover;
-    background-position: center;*/
-    transform: translate(-50%, -50%) rotate(90deg);
-    filter: blur(4px) brightness(0.6); /* blur + oscurecido para que el texto se lea */
+    background-position: center;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    filter: blur(4px) brightness(0.5); /* blur + oscurecido para que el texto se lea */
     z-index: 1;
 }
 
@@ -70,10 +70,19 @@ footer img{
 
 #events-head{
     display: flex;
-    flex-direction: row;
-    justify-content:space-evenly;
-    align-content: center;
-    background-color: rgb(187, 23, 23);
+    flex-direction: column;
+    background: linear-gradient(180deg, rgb(51, 1, 1) 0%, rgb(117, 6, 6) 100%);
+    color:white;
+}
+
+#events-head h1{
+    font-size: 55px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#events-head p{
+    align-self: self-end;
 }
 
 #events{
@@ -81,7 +90,7 @@ footer img{
     flex-direction: row;
     justify-content:space-evenly;
     align-content: center;
-    background-color: rgb(105, 95, 95);
+    background: linear-gradient(180deg, rgb(117, 6, 6) 0%, rgb(0, 0, 0) 100%);
 }
 
 #events img{
