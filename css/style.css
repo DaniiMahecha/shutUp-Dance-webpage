@@ -1,12 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=DM+Sans:wght@400..700&display=swap');
+
 :root {
     --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --font-accent: 'Playfair Display', serif;
 }
 
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 20
+}
+
+
 body {
     font-family: var(--font-body);
+    background-color: rgb(0, 0, 0);
+    margin: 0;
 }
 
 h1, h2, h3 {
@@ -17,12 +30,8 @@ em {
     font-family: var(--font-accent);
 }
 
-.dot{
-    color:red;
-}
-
-body{
-    background-color: rgb(0, 0, 0);
+.dot {
+    color: rgb(255, 1, 1);
 }
 
 header {
@@ -31,14 +40,20 @@ header {
     justify-content: space-between;
     align-content: center;
     background-color: rgb(23, 23, 23);
+    padding: 10px 20px;
 }
 
-header a{
+header a {
     align-self: center;
     color: gray;
 }
 
-header img{
+header :hover {
+    color: rgb(254, 254, 254);
+}
+
+
+header img {
     height: auto;
     width: 50px;
 }
@@ -48,10 +63,12 @@ footer {
     flex-direction: row;
     justify-content: space-between;
     align-content: center;
-    color:white;
+    background-color: rgb(23, 23, 23);
+    color: white;
+    padding: 20px;
 }
 
-footer img{
+footer img {
     height: 30px;
     width: auto;
 }
@@ -64,107 +81,165 @@ footer img{
     justify-content: center;
     align-items: center;
     color: white;
-    height: 100vh; /* asegúrate de que el div tenga altura */
+    height: 100vh;
     overflow: hidden;
 }
 
 #welcome .bg-image {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vh;       /* usamos vh porque va rotada 90° */
-    height: 100vw;
-    background-image: url('../img/sd-welcome.jpg');
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/sd-background.jpg');
     background-size: cover;
     background-position: center;
-    transform: translate(-50%, -50%) rotate(-90deg);
-    filter: blur(4px) brightness(0.5); /* blur + oscurecido para que el texto se lea */
+    filter: blur(1px) brightness(0.5);
     z-index: 1;
 }
 
-#welcome h1{
+#welcome h1 {
     font-size: 100px;
     z-index: 2;
 }
 
-#welcome p{
-    align-self:flex-end;
+#welcome p {
+    align-self: flex-end;
     z-index: 2;
 }
 
 #events-head{
-    display: flex;
-    flex-direction: column;
-    background: rgb(23, 23, 23);
-    color:white;
+    height: auto;
+    width: auto;
 }
 
-#events-head h1{
+#events-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: rgb(23, 23, 23);
+    color: white;
+    padding: 20px 0;
+}
+
+
+#events-head h1 {
     font-size: 55px;
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 10px;
 }
 
-#events-head p{
+#events-head p {
     align-self: self-end;
     margin-right: 10px;
 }
 
-#events{
+/* --- SECCIÓN DE TARJETAS FLIP --- */
+#events {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 20px;
     padding: 40px 20px;
-    background-color: rgb(53, 3, 3);
+    overflow: hidden;
 }
 
-.event-card{
+#events .bg-image-events {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/events-background.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5);
+    z-index: -1;
+}
+
+/* 1. Contenedor individual y perspectiva 3D */
+.flip-card {
     width: 30%;
     min-width: 260px;
+    perspective: 1000px; /* Profundidad tridimensional */
 }
 
-.event-card img{
+/* 2. Elemento interno que realiza la rotación */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 1.5s ease;
+    transform-style: preserve-3d;
+}
+
+/* 3. Activador del giro al pasar el mouse */
+.flip-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* 4. Propiedades compartidas entre ambas caras */
+.card-front, .card-back {
+    width: 100%;
+    backface-visibility: hidden; /* Oculta el lado opuesto al girar */
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.card-front img, .card-back img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.event-info{
+/* 5. Posicionamiento explícito de las caras */
+.card-front {
+    position: relative;
+}
+
+.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg); /* Nace pre-rotada */
+}
+
+/* Estilos de información y botón */
+.event-info {
     background-color: #efece3;
     color: #171717;
     padding: 16px;
 }
 
-.event-date{
+.event-date {
     font-size: 12px;
     color: gray;
     margin: 0;
 }
 
-.event-info h2{
+.event-info h2 {
     margin: 4px 0;
 }
 
-.event-genre{
+.event-genre {
     color: gray;
     margin: 0 0 10px;
 }
 
-.event-location{
+.event-location {
     font-size: 13px;
     margin: 0 0 14px;
 }
 
-.btn-tickets{
+.btn-tickets {
     display: block;
     text-align: center;
     background-color: #171717;
     color: white;
     text-decoration: none;
-    padding: 12px;
+    padding: 10px 0;
+    border-radius: 4px;
 }
-
-

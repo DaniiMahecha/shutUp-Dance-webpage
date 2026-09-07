@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <title>ShutUp & Dance</title>
 </head>
 <header>
     <img src="./img/sd-logo.jpg">
-    <a href="#events">Events</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="#"><span class="material-symbols-outlined">home</span></a>
+    <a href="#events"> <span class="material-symbols-outlined">event_upcoming</span> </a>
+    <a href="./djs.html"><span class="material-symbols-outlined">info</span></a>
+    <a href="#contact"><span class="material-symbols-outlined">chat</span></a>
     <a href="https://www.instagram.com/shutupdance.au/"> <img src="./img/instagram-icon.png"> </a>
-
 </header>
 <body>
     <div id="welcome">
@@ -34,43 +35,88 @@
     </div>
 
     <div id="events">
-    <div class="event-card">
-        <img src="./img/event1.png">
-        <div class="event-info">
-            <p class="event-date">SEP 14, 2026</p>
-            <h2>Nocturne / Vol. 04</h2>
-            <p class="event-genre">House · Disco · All night</p>
-            <p class="event-location">The Foundry, Brooklyn — 10PM–4AM</p>
-            <a href="#" class="btn-tickets">Get tickets</a>
+        <div class="bg-image-events"></div>
+        <!-- Tarjeta 1 con giro -->
+        <div class="flip-card">
+            <div class="card-inner">
+                <!-- Frente -->
+                <div class="card-front">
+                    <img src="./img/event1.png">
+                    <div class="event-info">
+                        <p class="event-date">SEP 14, 2026</p>
+                        <h2>Nocturne / Vol. 04</h2>
+                        <p class="event-genre">House · Disco · All night</p>
+                        <p class="event-location">The Foundry, Brooklyn — 10PM–4AM</p>
+                        <a href="#" class="btn-tickets">Get tickets</a>
+                    </div>
+                </div>
+                <!-- Reverso -->
+                <div class="card-back">
+                    <img src="./img/site1.png">
+                    <div class="event-info">
+                        <p class="event-date">SEP 14, 2026</p>
+                        <h2>Nocturne / Vol. 04</h2>
+                        <p class="event-genre">House · Disco · All night</p>
+                        <p class="event-location">The Foundry, Brooklyn — 10PM–4AM</p>
+                        <a href="#" class="btn-tickets">Get tickets</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="event-card">
-        <img src="./img/event2.png">
-        <div class="event-info">
-            <p class="event-date">SEP 28, 2026</p>
-            <h2>Afterimage</h2>
-            <p class="event-genre">Techno · UKG · Bass</p>
-            <p class="event-location">Elsewhere Hall, Brooklyn — 11PM–5AM</p>
-            <a href="#" class="btn-tickets">Get tickets</a>
+        <!-- Tarjeta 2 con giro -->
+        <div class="flip-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="./img/event2.png">
+                    <div class="event-info">
+                        <p class="event-date">SEP 28, 2026</p>
+                        <h2>Afterimage</h2>
+                        <p class="event-genre">Techno · UKG · Bass</p>
+                        <p class="event-location">Elsewhere Hall, Brooklyn — 11PM–5AM</p>
+                        <a href="#" class="btn-tickets">Get tickets</a>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <img src="./img/site1.png">
+                    <div class="event-info">
+                        <p class="event-date">SEP 28, 2026</p>
+                        <h2>Afterimage</h2>
+                        <p class="event-genre">Techno · UKG · Bass</p>
+                        <p class="event-location">Elsewhere Hall, Brooklyn — 11PM–5AM</p>
+                        <a href="#" class="btn-tickets">Get tickets</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="event-card">
-        <img src="./img/event3.png">
-        <div class="event-info">
-            <p class="event-date">OCT 11, 2026</p>
-            <h2>Soft Focus</h2>
-            <p class="event-genre">Ambient · Electronica</p>
-            <p class="event-location">Public Records, NYC — 8PM–2AM</p>
-            <a href="#" class="btn-tickets">Get tickets</a>
+        <!-- Tarjeta 3 con giro -->
+        <div class="flip-card">
+            <div class="card-inner">
+                <div class="card-front">
+                    <img src="./img/event3.png">
+                    <div class="event-info">
+                        <p class="event-date">OCT 11, 2026</p>
+                        <h2>Soft Focus</h2>
+                        <p class="event-genre">Ambient · Electronica</p>
+                        <p class="event-location">Public Records, NYC — 8PM–2AM</p>
+                        <a href="#" class="btn-tickets">Get tickets</a>
+                    </div>
+                </div>
+                <div class="card-back">
+                    <img src="./img/site1.png">
+                    <div class="event-info">
+                        <p class="event-date">OCT 11, 2026</p>
+                        <h2>Soft Focus</h2>
+                        <p class="event-genre">Ambient · Electronica</p>
+                        <p class="event-location">Public Records, NYC — 8PM–2AM</p>
+                        <a href="#" class="btn-tickets">Get tickets</a>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!--<img src="./img/music.png">-->
     </div>
-    <img src="./img/music.png">
-    </div>
-
-    
-
 
 </body>
 <footer>
