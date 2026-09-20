@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&family=DM+Sans:wght@400..700&display=swap');
 
 :root {
-    --font-heading: 'Space Grotesk', sans-serif;
+    --font-heading: "Archivo Black", sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --font-accent: 'Playfair Display', serif;
+    --bg: #0a0a0a;      /* fondo general de la página */
+    --panel: #141414;   /* tarjetas, reproductor, paneles */
+    --line: #262626;    /* bordes y separadores sutiles */
+    --txt: #f2f2f2;     /* texto principal */
+    --muted: #9a9a9a;   /* texto secundario / descripciones */
+    --accent: #ff1a1a;  /* acento rojo (botones, detalles, dot) */
 }
 
 
@@ -18,12 +24,14 @@
 
 body {
     font-family: var(--font-body);
-    background-color: rgb(0, 0, 0);
+    background: var(--bg);
+    color: var(--txt);
     margin: 0;
 }
 
 h1, h2, h3 {
     font-family: var(--font-heading);
+    font-weight: bold;
 }
 
 em {
@@ -31,11 +39,50 @@ em {
 }
 
 .dot {
-    color: rgb(255, 1, 1);
+    color: rgb(255, 0, 0);
+}
+
+section {
+    border-top: 1px solid var(--line);
+    padding-top: 80px;
 }
 
 /*===============================*/
-/*   1. HEADER (base + fijo)     */
+/*   0. Background Image         */
+/*===============================*/
+
+/* Clase BASE — todo lo que comparten todos los fondos */
+.bg-image {
+    position: absolute;
+    top: -20px; left: -20px; right: -20px; bottom: -20px;
+    width: auto; height: auto;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    will-change: transform, opacity;
+}
+
+/* Modificador para el fondo del hero */
+.bg-image--welcome {
+    background-image: url('../img/events-background.jpg');
+    filter: blur(1px) brightness(0.3);
+    animation: kenburns 18s ease-in-out infinite alternate;
+}
+
+/* Modificador para el fondo de eventos */
+.bg-image--events {
+    background-image: url('../img/sd-background.jpg');
+    filter: brightness(0.3);
+}
+
+/* Modificador para el fondo de djs */
+.bg-image--djs {
+    background-image: url('../img/dj-background.jpg');
+    filter: brightness(0.3);
+}
+
+/*===============================*/
+/*   1. HEADER                   */
 /*===============================*/
 .site-header {
     position: fixed;
@@ -48,7 +95,7 @@ em {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(23, 23, 23);
+    background-color: rgba(23, 23, 23, 0);
     padding: 10px 20px;
 
     /* Transición suave entre estado normal y "scrolled" */
@@ -69,7 +116,7 @@ em {
 }
 
 /*===============================*/
-/*     2. NAV / MENÚ MÓVIL       */
+/*     2. NAV / MOBILE MENU      */
 /*===============================*/
 .main-nav {
     display: flex;
@@ -87,21 +134,9 @@ em {
     display: none;
 }
 
-
-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
-    background-color: rgb(23, 23, 23);
-    color: white;
-    padding: 20px;
-}
-
-footer img {
-    height: 30px;
-    width: auto;
-}
+/*===============================*/
+/*     3. WELCOME                */
+/*===============================*/
 
 #welcome {
     position: relative;
@@ -115,18 +150,12 @@ footer img {
     overflow: hidden;
 }
 
-#welcome .bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../img/sd-background.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: blur(1px) brightness(0.3);
-    z-index: 1;
+
+@keyframes kenburns {
+    from { transform: scale(1) translateY(0); }
+    to   { transform: scale(1.12) translateY(-15px); }
 }
+
 
 #welcome h1 {
     font-size: 100px;
@@ -134,35 +163,113 @@ footer img {
 }
 
 #welcome p {
-    align-self: flex-end;
+    color: var(--muted);
     z-index: 2;
 }
 
-#events-head{
-    height: auto;
-    width: auto;
+.welcome__buttons{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    z-index: 2;
 }
 
-#events-head {
+.welcome__buttons button{
+    border-radius: 100px;
+    background-color: rgba(23, 23, 23, 0.684);
+}
+
+
+/*===============================*/
+/*     4. ABOUT                  */
+/*===============================*/
+
+#about {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    background: rgb(23, 23, 23);
-    color: white;
-    padding: 20px 0;
+    align-items:center;
+    justify-content: space-evenly;
+    background: var(--bg);
+    color: var(--txt);
+    height: auto;
+    width: auto;
+    padding: 20px 0px 20px 0px;
 }
 
 
-#events-head h1 {
+#about h1 {
     font-size: 55px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 10px;
 }
 
-#events-head p {
-    align-self: self-end;
+#about p {
     margin-right: 10px;
+}
+
+#about .info p{
+    color: var(--muted)
+}
+
+#about .carousel{
+    max-width: 500px;
+    max-height: auto;
+}
+
+/*===============================*/
+/*     4. DJs                    */
+/*===============================*/
+
+#djs{
+    position: relative;
+    z-index: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#djs{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: var(--txt);
+    background-color: var(--bg);
+    padding: 20px 0px 20px 0px;
+}
+
+#djs .info{
+    align-self: flex-end;
+}
+
+#djs .info p{
+    color: var(--muted)
+}
+
+#djs .info h1{
+    font-size: 55px;
+}
+
+.member-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.member-photo, .member-gif {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-gif {
+    position: absolute;
+    top: 0; left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.member-card:hover .member-gif {
+    opacity: 1;
 }
 
 /* --- SECCIÓN DE TARJETAS FLIP --- */
@@ -177,18 +284,6 @@ footer img {
     overflow: hidden;
 }
 
-#events .bg-image-events {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../img/events-background.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.3);
-    z-index: -1;
-}
 
 /* 1. Contenedor individual y perspectiva 3D */
 .flip-card {
@@ -272,4 +367,19 @@ footer img {
     text-decoration: none;
     padding: 10px 0;
     border-radius: 4px;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    background-color: rgb(23, 23, 23);
+    color: white;
+    padding: 20px;
+}
+
+footer img {
+    height: 30px;
+    width: auto;
 }

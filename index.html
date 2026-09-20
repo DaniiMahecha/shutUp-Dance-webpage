@@ -1,78 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
     <title>ShutUp & Dance</title>
 </head>
 
 <header class="site-header">
-    <img src="./img/sd-logo-footer.png">
+    <img src="./img/sd-logo-footer.png" />
 
     <ul class="nav main-nav justify-content-end">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#home"><i class="bi bi-house"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#about"><i class="bi bi-person-raised-hand"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#skills"><i class="bi bi-calendar-event"></i></a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="https://www.instagram.com/shutupdance.au/"><i class="bi bi-instagram"></i></a>
-            </li>
-        </ul>
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#home"><i class="bi bi-house"></i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#about"><i class="bi bi-person-raised-hand"></i></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#skills"><i class="bi bi-calendar-event"></i></a>
+        </li>
 
-        <!-- Menú desplegable para pantallas pequeñas -->
-        <div class="dropdown mobile-menu">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#home">Home</a></li>
-                <li><a class="dropdown-item" href="#about">About</a></li>
-                <li><a class="dropdown-item" href="#skills">Skills</a></li>
-            </ul>
-        </div>
-
+        <li class="nav-item">
+            <a class="nav-link" href="https://www.instagram.com/shutupdance.au/"><i class="bi bi-instagram"></i></a>
+        </li>
+    </ul>
 </header>
 
 <body>
-    <div id="welcome">
-        <div class="bg-image"></div>
-        <h1>SHUT UP <br><em>&</em> DANCE<span class="dot">.</span></h1>
-        <hr>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
-            Aliquam, esse! Amet rem a aut quaerat perspiciatis laboriosam explicabo ex, <br>
-            nulla voluptatibus. Atque veritatis eum, perspiciatis molestiae fugit sunt incidunt nisi. <br>
-        </p>
-    </div>
-
-    <div id="events-head">
-        <h1>Upcoming events</h1>
+    <section id="welcome">
+        <div class="bg-image bg-image--welcome"></div>
+        <h1>
+            SHUT UP <br /><span class="dot"><em>&</em></span> DANCE<span class="dot">.</span>
+        </h1>
+        <hr />
         <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
-            Aliquam, esse! Amet rem a aut quaerat perspiciatis laboriosam explicabo ex, <br>
-            nulla voluptatibus. Atque veritatis eum, perspiciatis molestiae fugit sunt incidunt nisi. <br>
+            Nulla voluptatibus. Atque veritatis eum, perspiciatis molestiae fugit
+            sunt incidunt nisi. <br />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
+            Aliquam, esse! Amet rem a aut quaerat perspiciatis laboriosam explicabo
+            ex, <br />
         </p>
-    </div>
 
-    <div id="events">
-        <div class="bg-image-events"></div>
+        <div class="welcome__buttons">
+            <button type="button" class="btn btn-outline-danger btn-lg">
+                Incoming Events!
+            </button>
+            <button type="button" class="btn btn-outline-light btn-lg">
+                Our Mixes
+            </button>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="info">
+            <h3><span class="dot">About Us</span></h3>
+            <h1>S<em>&</em>D History</h1>
+            <hr />
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
+                Aliquam, esse! Amet rem a aut quaerat perspiciatis laboriosam
+                explicabo ex, <br />
+                nulla voluptatibus. Atque veritatis eum, perspiciatis molestiae fugit
+                sunt incidunt nisi. <br />
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
+                Aliquam, esse! Amet rem a aut quaerat perspiciatis laboriosam
+                explicabo ex, <br />
+                nulla voluptatibus. Atque veritatis eum, perspiciatis molestiae fugit
+                sunt incidunt nisi. <br />
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
+                Aliquam, esse! Amet rem a aut quaerat perspiciatis laboriosam
+                explicabo ex, <br />
+                nulla voluptatibus. Atque veritatis eum, perspiciatis molestiae fugit
+                sunt incidunt nisi. <br />
+            </p>
+        </div>
+
+        <div id="carousel-about" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="2000">
+                    <img src="./img/carousel1.jpg" class="d-block w-100" alt="..." />
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="./img/carousel2.jpg" class="d-block w-100" alt="..." />
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="./img/carousel3.jpg" class="d-block w-100" alt="..." />
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="./img/carousel4.jpg" class="d-block w-100" alt="..." />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="djs">
+        <div class="bg-image bg-image--djs"></div>
+        <div class="info">
+            <h3><span class="dot">Our Team</span></h3>
+            <h1>S<em>&</em>D DJs</h1>
+        </div>
+        <div class="team">
+            <div class="member-card">
+                <img class="member-photo" src="./img/rolo-image.jpg" alt="Rex Volt">
+                <img class="member-gif" src="./img/rolo-mix.gif" alt="">
+            </div>
+            <div class="member-card">
+                <img class="member-photo" src="./img/navarro-image.jpg" alt="Rex Volt">
+                <img class="member-gif" src="./img/navarro-mix.gif" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section id="events">
+        <div class="bg-image bg-image--events"></div>
         <!-- Tarjeta 1 con giro -->
         <div class="flip-card">
             <div class="card-inner">
                 <!-- Frente -->
                 <div class="card-front">
-                    <img src="./img/event1.png">
+                    <img src="./img/event1.png" />
                     <div class="event-info">
                         <p class="event-date">SEP 14, 2026</p>
                         <h2>Nocturne / Vol. 04</h2>
@@ -83,7 +139,7 @@
                 </div>
                 <!-- Reverso -->
                 <div class="card-back">
-                    <img src="./img/site1.png">
+                    <img src="./img/site1.png" />
                     <div class="event-info">
                         <p class="event-date">SEP 14, 2026</p>
                         <h2>Nocturne / Vol. 04</h2>
@@ -99,7 +155,7 @@
         <div class="flip-card">
             <div class="card-inner">
                 <div class="card-front">
-                    <img src="./img/event2.png">
+                    <img src="./img/event2.png" />
                     <div class="event-info">
                         <p class="event-date">SEP 28, 2026</p>
                         <h2>Afterimage</h2>
@@ -109,7 +165,7 @@
                     </div>
                 </div>
                 <div class="card-back">
-                    <img src="./img/site1.png">
+                    <img src="./img/site1.png" />
                     <div class="event-info">
                         <p class="event-date">SEP 28, 2026</p>
                         <h2>Afterimage</h2>
@@ -125,7 +181,7 @@
         <div class="flip-card">
             <div class="card-inner">
                 <div class="card-front">
-                    <img src="./img/event3.png">
+                    <img src="./img/event3.png" />
                     <div class="event-info">
                         <p class="event-date">OCT 11, 2026</p>
                         <h2>Soft Focus</h2>
@@ -135,7 +191,7 @@
                     </div>
                 </div>
                 <div class="card-back">
-                    <img src="./img/site1.png">
+                    <img src="./img/site1.png" />
                     <div class="event-info">
                         <p class="event-date">OCT 11, 2026</p>
                         <h2>Soft Focus</h2>
@@ -147,23 +203,24 @@
             </div>
         </div>
         <!--<img src="./img/music.png">-->
-    </div>
+    </section>
 
-        <script>
-        const header = document.querySelector('.site-header');
+    <script>
+        const header = document.querySelector(".site-header");
 
-        window.addEventListener('scroll', () => {
+        window.addEventListener("scroll", () => {
             if (window.scrollY > 50) {
-                header.classList.add('scrolled');
+                header.classList.add("scrolled");
             } else {
-                header.classList.remove('scrolled');
+                header.classList.remove("scrolled");
             }
         });
     </script>
 </body>
 
 <footer>
-    <img src="./img/sd-logo-footer.png">
+    <img src="./img/sd-logo-footer.png" />
     <p>Since 2023</p>
 </footer>
+
 </html>
