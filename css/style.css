@@ -48,6 +48,22 @@ section {
 }
 
 /*===============================*/
+/*   0. Layout Flex              */
+/*===============================*/
+
+/* Patrón compartido: secciones en fila con info + contenido, distribuidos en space-evenly */
+.section-split {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    background: var(--bg);
+    color: var(--txt);
+    padding: 20px 0px 20px 0px;
+    z-index: 0;
+}
+
+/*===============================*/
 /*   0. Background Image         */
 /*===============================*/
 
@@ -75,10 +91,11 @@ section {
     filter: brightness(0.3);
 }
 
-/* Modificador para el fondo de djs */
-.bg-image--djs {
-    background-image: url('../img/dj-background.jpg');
-    filter: brightness(0.3);
+/* Modificador para el fondo de música */
+.bg-image--music {
+    background-image: url('../img/music-background.jpg');
+    filter: blur(1px) brightness(0.3);
+    animation: kenburns 18s ease-in-out infinite alternate;
 }
 
 /*===============================*/
@@ -90,13 +107,12 @@ section {
     left: 0;
     width: 100%;
     z-index: 1000;
-
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     background-color: rgba(23, 23, 23, 0);
-    padding: 10px 20px;
+    padding: 6px 20px;
 
     /* Transición suave entre estado normal y "scrolled" */
     transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
@@ -112,7 +128,6 @@ section {
     background-color: rgba(23, 23, 23, 0.85); /* más opaco/oscuro */
     backdrop-filter: blur(8px); /* efecto "vidrio esmerilado", opcional */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    padding: 6px 20px; /* header un poco más compacto */
 }
 
 /*===============================*/
@@ -165,6 +180,7 @@ section {
 #welcome p {
     color: var(--muted);
     z-index: 2;
+    text-align:center;
 }
 
 .welcome__buttons{
@@ -186,19 +202,6 @@ section {
 /*     4. ABOUT                  */
 /*===============================*/
 
-#about {
-    display: flex;
-    flex-direction: row;
-    align-items:center;
-    justify-content: space-evenly;
-    background: var(--bg);
-    color: var(--txt);
-    height: auto;
-    width: auto;
-    padding: 20px 0px 20px 0px;
-}
-
-
 #about h1 {
     font-size: 55px;
 }
@@ -207,17 +210,17 @@ section {
     margin-right: 10px;
 }
 
-#about .info p{
+#about .info p {
     color: var(--muted)
 }
 
-#about .carousel{
+#about .carousel {
     max-width: 500px;
     max-height: auto;
 }
 
 /*===============================*/
-/*     4. DJs                    */
+/*     5. DJs                    */
 /*===============================*/
 
 #djs{
@@ -229,7 +232,7 @@ section {
 
 #djs{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     color: var(--txt);
     background-color: var(--bg);
@@ -238,6 +241,8 @@ section {
 
 #djs .info{
     align-self: flex-end;
+    text-align: right;
+    padding-right: 40px;
 }
 
 #djs .info p{
@@ -248,9 +253,24 @@ section {
     font-size: 55px;
 }
 
+.team{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex: 1;        /* toma todo el alto restante de #djs */
+    min-height: 0;  /* truco necesario: sin esto, flex no deja que el hijo se achique por debajo de su contenido */
+    padding: 5px 20px 10px 20px;
+}
+
 .member-card {
     position: relative;
     overflow: hidden;
+    border-radius: 12px;
+    min-width: 300px;
+    max-height: auto;
+}
+
+.member-photo{
     border-radius: 12px;
 }
 
@@ -265,12 +285,92 @@ section {
     position: absolute;
     top: 0; left: 0;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.7s cubic-bezier(0.1, 0, 0.2, 1);
 }
 
 .member-card:hover .member-gif {
     opacity: 1;
 }
+
+/*===============================*/
+/*     6. Mixes                  */
+/*===============================*/
+
+#music{
+    position: relative;
+    overflow: hidden;
+}
+
+#music .info h1 {
+    font-size: 55px;
+}
+
+.player {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.track:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.play {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    flex: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play::after {
+    content: "";
+    border-style: solid;
+    border-width: 6px 0 6px 10px;
+    border-color: transparent transparent transparent #fff;
+    margin-left: 2px;
+}
+
+.track-meta {
+    width: 160px;
+    flex: none;
+}
+
+.track-meta h4 {
+    font-size: 13px;
+    margin: 0;
+    font-family: var(--font-body);
+    font-weight: 700;
+}
+
+.track-meta span {
+    font-size: 11px;
+    color: var(--muted);
+}
+
+.wave {
+    flex: 1;
+    height: 26px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--line) 0 2px,
+        transparent 2px 5px
+    );
+    border-radius: 4px;
+    opacity: 0.7;
+}
+
 
 /* --- SECCIÓN DE TARJETAS FLIP --- */
 #events {
