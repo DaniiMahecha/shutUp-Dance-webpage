@@ -95,7 +95,6 @@ section {
     background-image: url('../img/backgrounds/music-background.jpg');
     filter: brightness(0.25);
     background-attachment: fixed;
-    animation: kenburns 8s ease-in-out infinite alternate;
 }
 
 /*===============================*/
