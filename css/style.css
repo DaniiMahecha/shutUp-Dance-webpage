@@ -47,6 +47,32 @@ section {
 }
 
 /*===============================*/
+/*   0. Scroll                   */
+/*===============================*/
+
+/* El "tubo" completo de la scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* El fondo/riel por donde se desliza */
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+/* La barra que sí se arrastra */
+::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border-radius: 10px;
+}
+
+/* Color cuando el usuario pasa el mouse por encima */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+
+/*===============================*/
 /*   0. Layout Flex              */
 /*===============================*/
 
