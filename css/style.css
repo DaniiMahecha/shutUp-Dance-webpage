@@ -44,7 +44,6 @@ em {
 
 section {
     border-top: 1px solid var(--line);
-    padding-top: 80px;
 }
 
 /*===============================*/
@@ -59,7 +58,7 @@ section {
     justify-content: space-evenly;
     background: var(--bg);
     color: var(--txt);
-    padding: 20px 0px 20px 0px;
+    padding: 50px 20px 50px 20px;
     z-index: 0;
 }
 
@@ -80,22 +79,23 @@ section {
 
 /* Modificador para el fondo del hero */
 .bg-image--welcome {
-    background-image: url('../img/events-background.jpg');
+    background-image: url('../img/backgrounds/events-background.jpg');
     filter: blur(1px) brightness(0.3);
-    animation: kenburns 18s ease-in-out infinite alternate;
+    animation: kenburns 8s ease-in-out infinite alternate;
 }
 
 /* Modificador para el fondo de eventos */
 .bg-image--events {
-    background-image: url('../img/sd-background.jpg');
+    background-image: url('../img/backgrounds/sd-background.jpg');
     filter: brightness(0.3);
 }
 
-/* Modificador para el fondo de música */
-.bg-image--music {
-    background-image: url('../img/music-background.jpg');
-    filter: blur(1px) brightness(0.3);
-    animation: kenburns 18s ease-in-out infinite alternate;
+/* Fondo compartido entre #music y #events — misma imagen, efecto fijo, sin zoom */
+.bg-image--session {
+    background-image: url('../img/backgrounds/music-background.jpg');
+    filter: brightness(0.25);
+    background-attachment: fixed;
+    animation: kenburns 8s ease-in-out infinite alternate;
 }
 
 /*===============================*/
@@ -202,13 +202,11 @@ section {
 /*     4. ABOUT                  */
 /*===============================*/
 
+
 #about h1 {
     font-size: 55px;
 }
 
-#about p {
-    margin-right: 10px;
-}
 
 #about .info p {
     color: var(--muted)
@@ -236,7 +234,7 @@ section {
     align-items: center;
     color: var(--txt);
     background-color: var(--bg);
-    padding: 20px 0px 20px 0px;
+    padding: 50px 20px 50px 20px;
 }
 
 #djs .info{
@@ -272,6 +270,7 @@ section {
 
 .member-photo{
     border-radius: 12px;
+    max-width: 400px;
 }
 
 .member-photo, .member-gif {
@@ -291,7 +290,42 @@ section {
 .member-card:hover .member-gif {
     opacity: 1;
 }
+/*=========================================*/
+/*     BONUS Mixes + Events Background     */
+/*=========================================*/
 
+.session-wrapper {
+    position: relative;
+}
+
+.bg-image--session {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    width: 100%;
+    height: 100vh;
+    margin-bottom: -100vh; /* clave: ver explicación abajo */
+    /*
+    Es el truco que hace que esto funcione. .bg-image--session mide 100vh de alto 
+    y ocupa ese espacio en el flujo normal del documento — pero el margen negativo "colapsa" 
+    ese espacio a cero, así que #music empieza a dibujarse justo en el mismo lugar donde 
+    empieza la imagen, superponiéndose visualmente sobre ella 
+    (por eso necesita z-index: -1, para quedar detrás del contenido).
+
+    Como la imagen es sticky respecto a .session-wrapper 
+    (que ahora mide, en alto total, lo mismo que #music + #events juntas), 
+    el navegador la mantiene pegada en top: 0 durante todo el scroll de esas dos secciones,
+    y en cuanto el usuario termina de pasar #events, el wrapper se acaba y la imagen se "suelta" con 
+    normalidad — no sigue pegada para siempre.
+    */
+    background-image: url('../img/backgrounds/music-background.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.25);
+    z-index: -1;
+}
 /*===============================*/
 /*     6. Mixes                  */
 /*===============================*/
@@ -299,11 +333,14 @@ section {
 #music{
     position: relative;
     overflow: hidden;
+    background:transparent ;
 }
+
 
 #music .info h1 {
     font-size: 55px;
 }
+
 
 .player {
     background: var(--panel);
@@ -372,24 +409,37 @@ section {
 }
 
 
-/* --- SECCIÓN DE TARJETAS FLIP --- */
+/*===============================*/
+/*     6. Events                 */
+/*===============================*/
 #events {
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 40px 20px;
     overflow: hidden;
+    padding: 50px;
+    border-top: transparent;
 }
 
+#events .info h1{
+    color: var(--txt);
+    padding-bottom: 10px;
+    font-size: 55px;
+}
+
+#events .events{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+}
 
 /* 1. Contenedor individual y perspectiva 3D */
 .flip-card {
     width: 30%;
     min-width: 260px;
     perspective: 1000px; /* Profundidad tridimensional */
+    border-radius: 50%;
 }
 
 /* 2. Elemento interno que realiza la rotación */
@@ -434,40 +484,44 @@ section {
 
 /* Estilos de información y botón */
 .event-info {
-    background-color: #efece3;
+    background: var(--panel);
     color: #171717;
     padding: 16px;
 }
 
 .event-date {
     font-size: 12px;
-    color: gray;
+    color: var(--muted);
     margin: 0;
 }
 
 .event-info h2 {
     margin: 4px 0;
+    color: var(--txt);
 }
 
 .event-genre {
-    color: gray;
+    color: var(--muted);
     margin: 0 0 10px;
 }
 
 .event-location {
     font-size: 13px;
     margin: 0 0 14px;
+    color: var(--txt);
 }
 
 .btn-tickets {
     display: block;
     text-align: center;
-    background-color: #171717;
+    background-color: #5b5858;
     color: white;
     text-decoration: none;
     padding: 10px 0;
-    border-radius: 4px;
+    border-radius: 15px;
 }
+
+/**/
 
 footer {
     display: flex;
