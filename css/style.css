@@ -112,7 +112,6 @@ section {
     align-items: center;
     background-color: rgba(23, 23, 23, 0);
     padding: 6px 20px;
-
     /* Transición suave entre estado normal y "scrolled" */
     transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
 }
@@ -124,8 +123,8 @@ section {
 
 /* Estado cuando el usuario ha hecho scroll */
 .site-header.scrolled {
-    background-color: rgba(23, 23, 23, 0.85); /* más opaco/oscuro */
-    backdrop-filter: blur(8px); /* efecto "vidrio esmerilado", opcional */
+    background-color: rgba(23, 23, 23, 0.782); /* más opaco/oscuro */
+    backdrop-filter: blur(8px); /* efecto "vidrio esmerilado"*/
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -335,6 +334,12 @@ section {
     background:transparent ;
 }
 
+#music .info{
+    background: #0a0a0a92;
+    padding: 50px;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+}
 
 #music .info h1 {
     font-size: 55px;
@@ -342,7 +347,7 @@ section {
 
 
 .player {
-    background: var(--panel);
+    background: #0a0a0a92;
     border: 1px solid var(--line);
     border-radius: 14px;
     padding: 22px;
@@ -438,7 +443,6 @@ section {
     width: 30%;
     min-width: 260px;
     perspective: 1000px; /* Profundidad tridimensional */
-    border-radius: 50%;
 }
 
 /* 2. Elemento interno que realiza la rotación */
@@ -483,7 +487,7 @@ section {
 
 /* Estilos de información y botón */
 .event-info {
-    background: var(--panel);
+    background: rgba(23, 23, 23, 0.811);
     color: #171717;
     padding: 16px;
 }
@@ -522,17 +526,18 @@ section {
 
 /**/
 
-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
-    background-color: rgb(23, 23, 23);
-    color: white;
-    padding: 20px;
-}
-
-footer img {
+footer{
+    padding: 36px 0;
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    border-top:1px solid var(--line);
+    background: rgba(23, 23, 23);
     height: 30px;
-    width: auto;
+
+}
+footer .ig{
+    color:var(--txt);
+    font-weight:700;
+    text-decoration: none;
 }
