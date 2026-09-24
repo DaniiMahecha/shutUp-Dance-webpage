@@ -105,7 +105,7 @@ section {
 
 /* Modificador para el fondo del hero */
 .bg-image--welcome {
-    background-image: url('../img/backgrounds/events-background.jpg');
+    background-image: url('../img/backgrounds/events-background.webp');
     filter: blur(1px) brightness(0.3);
     animation: kenburns 8s ease-in-out infinite alternate;
 }
@@ -550,8 +550,77 @@ section {
     border-radius: 15px;
 }
 
-/**/
+/*===============================*/
+/*     6. Galery                 */
+/*===============================*/
 
+
+#gallery {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: flex-end;
+    background: var(--bg);
+    /* sin z-index aquí */
+}
+
+#gallery .info {
+    color: var(--txt);
+    text-align: right;
+    padding: 50px;
+}
+
+#gallery .info h1 {
+    font-size: 55px;
+}
+
+.gallery-base-bg {
+    position: absolute;
+    inset: 0;
+    background-color: var(--bg);
+    z-index: -2;
+}
+
+.bg-carousel {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.bg-carousel {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.bg-carousel__slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.35);
+    opacity: 0;
+    animation: bgCarouselFade 85s infinite;
+    animation-delay: calc(var(--i) * 5s); /* cada imagen "le toca" su turno de 5s */
+}
+
+@keyframes bgCarouselFade {
+    0%    { opacity: 0; }
+    0.7%  { opacity: 1; }
+    5.2%  { opacity: 1; }
+    5.9%  { opacity: 0; }
+    100%  { opacity: 0; }
+}
+
+
+
+
+
+/**/
 footer{
     padding: 36px 0;
     text-align:center;
