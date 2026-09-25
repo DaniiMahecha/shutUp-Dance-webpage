@@ -4,30 +4,26 @@
     --font-heading: "Archivo Black", sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --font-accent: 'Playfair Display', serif;
+
     --bg: #0a0a0a;      /* fondo general de la página */
     --panel: #141414;   /* tarjetas, reproductor, paneles */
     --line: #262626;    /* bordes y separadores sutiles */
     --txt: #f2f2f2;     /* texto principal */
     --muted: #9a9a9a;   /* texto secundario / descripciones */
     --accent: #ff1a1a;  /* acento rojo (botones, detalles, dot) */
+
     --font-size-h1: clamp(1.5rem, 9vw, 3rem);
 }
 
-
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 20
-}
-
+/* ===============================
+   0. Reset / Base
+   =============================== */
 
 body {
+    margin: 0;
     font-family: var(--font-body);
     background: var(--bg);
     color: var(--txt);
-    margin: 0;
 }
 
 h1, h2, h3 {
@@ -47,86 +43,92 @@ section {
     border-top: 1px solid var(--line);
 }
 
-/*===============================*/
-/*   0. Scroll                   */
-/*===============================*/
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
 
-/* El "tubo" completo de la scrollbar */
+/* ===============================
+   0.1 Scrollbar
+   =============================== */
+
 ::-webkit-scrollbar {
     width: 10px;
 }
 
-/* El fondo/riel por donde se desliza */
 ::-webkit-scrollbar-track {
     background: var(--bg);
 }
 
-/* La barra que sí se arrastra */
 ::-webkit-scrollbar-thumb {
     background: var(--line);
     border-radius: 10px;
 }
 
-/* Color cuando el usuario pasa el mouse por encima */
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
 }
 
+/* ===============================
+   0.2 Layout compartido
+   =============================== */
 
-/*===============================*/
-/*   0. Layout Flex              */
-/*===============================*/
-
-/* Patrón compartido: secciones en fila con info + contenido, distribuidos en space-evenly */
+/* Secciones en fila con info + contenido, distribuidos en space-evenly */
 .section-split {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    z-index: 0;
+    padding: 50px 20px;
     background: var(--bg);
     color: var(--txt);
-    padding: 50px 20px 50px 20px;
-    z-index: 0;
 }
 
-/*===============================*/
-/*   0. Background Image         */
-/*===============================*/
+/* ===============================
+   0.3 Fondos de sección (Ken Burns / blur)
+   =============================== */
 
-/* Clase BASE — todo lo que comparten todos los fondos */
+/* Clase base: todo lo que comparten los fondos con blur/zoom */
 .bg-image {
     position: absolute;
-    top: -20px; left: -20px; right: -20px; bottom: -20px;
-    width: auto; height: auto;
+    inset: -20px;               /* sobrante para que el blur no muestre borde */
+    width: auto;
+    height: auto;
     background-size: cover;
     background-position: center;
     z-index: -1;
     will-change: transform, opacity;
 }
 
-/* Modificador para el fondo del hero */
 .bg-image--welcome {
     background-image: url('../img/backgrounds/events-background.webp');
     filter: blur(1px) brightness(0.3);
     animation: kenburns 8s ease-in-out infinite alternate;
 }
 
-/* Modificador para el fondo de eventos */
 .bg-image--events {
     background-image: url('../img/backgrounds/sd-background.jpg');
     filter: brightness(0.3);
 }
 
-/* Fondo compartido entre #music y #events — misma imagen, efecto fijo, sin zoom */
+/* Fondo compartido entre #music y #events, fijo mientras el usuario hace scroll */
 .bg-image--session {
     background-image: url('../img/backgrounds/music-background.jpg');
+    background-size: cover;
+    background-position: center;
     filter: brightness(0.25);
     background-attachment: fixed;
 }
 
-/*===============================*/
-/*   1. HEADER                   */
-/*===============================*/
+@keyframes kenburns {
+    from { transform: scale(1) translateY(0); }
+    to   { transform: scale(1.12) translateY(-15px); }
+}
+
+/* ===============================
+   1. Header
+   =============================== */
+
 .site-header {
     position: fixed;
     top: 0;
@@ -137,9 +139,8 @@ section {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(23, 23, 23, 0);
     padding: 6px 20px;
-    /* Transición suave entre estado normal y "scrolled" */
+    background-color: rgba(23, 23, 23, 0);
     transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
 }
 
@@ -150,14 +151,15 @@ section {
 
 /* Estado cuando el usuario ha hecho scroll */
 .site-header.scrolled {
-    background-color: rgba(23, 23, 23, 0.782); /* más opaco/oscuro */
-    backdrop-filter: blur(8px); /* efecto "vidrio esmerilado"*/
+    background-color: rgba(23, 23, 23, 0.782);
+    backdrop-filter: blur(8px);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-/*===============================*/
-/*     2. NAV / MOBILE MENU      */
-/*===============================*/
+/* ===============================
+   2. Nav / Menú móvil
+   =============================== */
+
 .main-nav {
     display: flex;
 }
@@ -174,13 +176,13 @@ section {
     display: none;
 }
 
-/* El botón que abre el menú (el ícono de hamburguesa) */
 .mobile-menu .dropdown-toggle {
     background: var(--panel);
     border: 1px solid var(--line);
     color: var(--txt);
 }
 
+/* Bootstrap fija sus propios colores de estado vía variables internas, por eso el !important */
 .mobile-menu .dropdown-toggle:hover,
 .mobile-menu .dropdown-toggle:focus,
 .mobile-menu .dropdown-toggle:active {
@@ -190,143 +192,126 @@ section {
     box-shadow: none !important;
 }
 
-/* El panel desplegable en sí */
 .mobile-menu .dropdown-menu {
+    min-width: 160px;
+    padding: 8px;
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: 10px;
-    padding: 8px;
-    min-width: 160px;
 }
 
-/* Cada opción del menú */
 .mobile-menu .dropdown-item {
+    padding: 10px 14px;
+    border-radius: 6px;
     color: var(--txt);
     font-family: var(--font-body);
     font-size: 14px;
-    padding: 10px 14px;
-    border-radius: 6px;
 }
 
-/* Hover/focus de cada opción */
 .mobile-menu .dropdown-item:hover,
 .mobile-menu .dropdown-item:focus {
     background: var(--accent);
     color: white;
 }
 
-/*===============================*/
-/*     3. WELCOME                */
-/*===============================*/
+/* ===============================
+   3. Welcome (hero)
+   =============================== */
 
 #welcome {
     position: relative;
-    display: flex;
     z-index: 0;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
     height: 100vh;
     overflow: hidden;
+    color: white;
 }
-
-
-@keyframes kenburns {
-    from { transform: scale(1) translateY(0); }
-    to   { transform: scale(1.12) translateY(-15px); }
-}
-
 
 #welcome h1 {
-    font-size: clamp(2.5rem, 9vw, 6.25rem); /* min 40px, ideal 9% del ancho, max 100px */
     z-index: 2;
+    font-size: clamp(2.5rem, 9vw, 6.25rem); /* min 40px, ideal 9vw, max 100px */
 }
 
 #welcome p {
-    color: var(--muted);
     z-index: 2;
-    text-align:center;
+    color: var(--muted);
+    text-align: center;
 }
 
-.welcome__buttons{
-    margin-top: 25px;
+.welcome__buttons {
+    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 40px;
-    z-index: 2;
+    margin-top: 25px;
 }
 
-.welcome__buttons button{
+.welcome__buttons button {
     border-radius: 100px;
     background-color: rgba(23, 23, 23, 0.684);
 }
 
-
-/*===============================*/
-/*     4. ABOUT                  */
-/*===============================*/
-
+/* ===============================
+   4. About
+   =============================== */
 
 #about h1 {
     font-size: var(--font-size-h1);
 }
 
-
 #about .info p {
-    color: var(--muted)
+    color: var(--muted);
 }
 
 #about .carousel {
     max-width: 500px;
-    max-height: auto;
 }
 
-/*===============================*/
-/*     5. DJs                    */
-/*===============================*/
+/* ===============================
+   5. DJs
+   =============================== */
 
-#djs{
+#djs {
     position: relative;
     z-index: 0;
-    height: 100vh;
-    overflow: hidden;
-}
-
-#djs{
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--txt);
+    height: 100vh;
+    overflow: hidden;
+    padding: 50px 20px;
     background-color: var(--bg);
-    padding: 50px 20px 50px 20px;
+    color: var(--txt);
 }
 
-#djs .info{
+#djs .info {
     align-self: flex-end;
     text-align: right;
     padding-right: 40px;
 }
 
-#djs .info p{
-    color: var(--muted)
+#djs .info p {
+    color: var(--muted);
 }
 
-#djs .info h1{
+#djs .info h1 {
     font-size: var(--font-size-h1);
 }
 
-.team{
+.team {
+    flex: 1;        /* toma todo el alto restante de #djs */
+    min-height: 0;  /* permite que el hijo se achique por debajo de su contenido */
     display: flex;
     flex-direction: row;
     gap: 20px;
-    flex: 1;        /* toma todo el alto restante de #djs */
-    min-height: 0;  /* truco necesario: sin esto, flex no deja que el hijo se achique por debajo de su contenido */
-    padding: 5px 20px 10px 20px;
+    padding: 5px 20px 10px;
 }
 
-.team h3{
+.team h3 {
     font-size: 1.5rem;
 }
 
@@ -335,15 +320,15 @@ section {
     overflow: hidden;
     border-radius: 12px;
     min-width: 300px;
-    max-height: auto;
 }
 
-.member-photo{
-    border-radius: 12px;
+.member-photo {
     max-width: 400px;
+    border-radius: 12px;
 }
 
-.member-photo, .member-gif {
+.member-photo,
+.member-gif {
     display: block;
     width: 100%;
     height: 100%;
@@ -352,7 +337,8 @@ section {
 
 .member-gif {
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
     opacity: 0;
     transition: opacity 0.7s cubic-bezier(0.1, 0, 0.2, 1);
 }
@@ -360,14 +346,17 @@ section {
 .member-card:hover .member-gif {
     opacity: 1;
 }
-/*=========================================*/
-/*     BONUS Mixes + Events Background     */
-/*=========================================*/
+
+/* ===============================
+   6. Fondo compartido: Mixes + Events
+   =============================== */
 
 .session-wrapper {
     position: relative;
 }
 
+/* .bg-image--session mide 100vh y colapsa con margin-bottom negativo, para
+   que quede sticky respecto a .session-wrapper mientras dura #music + #events */
 .bg-image--session {
     position: sticky;
     top: 0;
@@ -376,58 +365,41 @@ section {
     bottom: auto;
     width: 100%;
     height: 100vh;
-    margin-bottom: -100vh; /* clave: ver explicación abajo */
-    /*
-    Es el truco que hace que esto funcione. .bg-image--session mide 100vh de alto 
-    y ocupa ese espacio en el flujo normal del documento — pero el margen negativo "colapsa" 
-    ese espacio a cero, así que #music empieza a dibujarse justo en el mismo lugar donde 
-    empieza la imagen, superponiéndose visualmente sobre ella 
-    (por eso necesita z-index: -1, para quedar detrás del contenido).
-
-    Como la imagen es sticky respecto a .session-wrapper 
-    (que ahora mide, en alto total, lo mismo que #music + #events juntas), 
-    el navegador la mantiene pegada en top: 0 durante todo el scroll de esas dos secciones,
-    y en cuanto el usuario termina de pasar #events, el wrapper se acaba y la imagen se "suelta" con 
-    normalidad — no sigue pegada para siempre.
-    */
-    background-image: url('../img/backgrounds/music-background.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.25);
+    margin-bottom: -100vh;
     z-index: -1;
 }
-/*===============================*/
-/*     6. Mixes                  */
-/*===============================*/
 
-#music{
+/* ===============================
+   7. Mixes
+   =============================== */
+
+#music {
     position: relative;
     overflow: hidden;
-    background:transparent ;
+    background: transparent;
 }
 
-#music .info{
-    background: #0a0a0a92;
+#music .info {
     padding: 50px;
-    border-radius: 14px;
+    background: #0a0a0a92;
     border: 1px solid var(--line);
+    border-radius: 14px;
 }
 
 #music .info h1 {
     font-size: var(--font-size-h1);
 }
 
-
 .player {
-    background: #0a0a0a92;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 22px;
+    width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     gap: 18px;
-    max-width: 500px;
-    width: 100%;
+    padding: 22px;
+    background: #0a0a0a92;
+    border: 1px solid var(--line);
+    border-radius: 14px;
 }
 
 .track:hover {
@@ -435,59 +407,55 @@ section {
 }
 
 .play {
+    flex: none;
     width: 38px;
     height: 38px;
-    border-radius: 50%;
-    background: var(--accent);
-    border: none;
-    flex: none;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
 }
 
 .play::after {
     content: "";
+    margin-left: 2px;
     border-style: solid;
     border-width: 6px 0 6px 10px;
     border-color: transparent transparent transparent #fff;
-    margin-left: 2px;
 }
 
 .track-meta {
-    width: 160px;
     flex: none;
+    width: 160px;
 }
 
 .track-meta h4 {
-    font-size: 13px;
     margin: 0;
     font-family: var(--font-body);
+    font-size: 13px;
     font-weight: 700;
 }
 
 .track-meta span {
-    font-size: 11px;
     color: var(--muted);
+    font-size: 11px;
 }
 
 .wave {
     flex: 1;
     height: 26px;
-    background: repeating-linear-gradient(
-        90deg,
-        var(--line) 0 2px,
-        transparent 2px 5px
-    );
     border-radius: 4px;
     opacity: 0.7;
+    background: repeating-linear-gradient(90deg, var(--line) 0 2px, transparent 2px 5px);
 }
 
+/* ===============================
+   8. Events
+   =============================== */
 
-/*===============================*/
-/*     6. Events                 */
-/*===============================*/
 #events {
     position: relative;
     display: flex;
@@ -498,26 +466,25 @@ section {
     border-top: transparent;
 }
 
-#events .info h1{
-    color: var(--txt);
+#events .info h1 {
     padding-bottom: 10px;
+    color: var(--txt);
     font-size: var(--font-size-h1);
 }
 
-#events .events{
+#events .events {
     display: flex;
     flex-direction: row;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
 }
 
-/* 1. Contenedor individual y perspectiva 3D */
+/* Tarjetas con giro 3D (front/back) */
 .flip-card {
     width: 30%;
     min-width: 260px;
-    perspective: 1000px; /* Profundidad tridimensional */
+    perspective: 1000px;
 }
 
-/* 2. Elemento interno que realiza la rotación */
 .card-inner {
     position: relative;
     width: 100%;
@@ -526,26 +493,25 @@ section {
     transform-style: preserve-3d;
 }
 
-/* 3. Activador del giro al pasar el mouse */
 .flip-card:hover .card-inner {
     transform: rotateY(180deg);
 }
 
-/* 4. Propiedades compartidas entre ambas caras */
-.card-front, .card-back {
+.card-front,
+.card-back {
     width: 100%;
-    backface-visibility: hidden; /* Oculta el lado opuesto al girar */
-    border-radius: 4px;
     overflow: hidden;
+    backface-visibility: hidden;
+    border-radius: 4px;
 }
 
-.card-front img, .card-back img {
+.card-front img,
+.card-back img {
+    display: block;
     width: 100%;
     height: auto;
-    display: block;
 }
 
-/* 5. Posicionamiento explícito de las caras */
 .card-front {
     position: relative;
 }
@@ -554,20 +520,19 @@ section {
     position: absolute;
     top: 0;
     left: 0;
-    transform: rotateY(180deg); /* Nace pre-rotada */
+    transform: rotateY(180deg); /* nace pre-rotada */
 }
 
-/* Estilos de información y botón */
 .event-info {
+    padding: 16px;
     background: rgba(23, 23, 23, 0.811);
     color: #171717;
-    padding: 16px;
 }
 
 .event-date {
-    font-size: 12px;
-    color: var(--muted);
     margin: 0;
+    color: var(--muted);
+    font-size: 12px;
 }
 
 .event-info h2 {
@@ -576,47 +541,46 @@ section {
 }
 
 .event-genre {
-    color: var(--muted);
     margin: 0 0 10px;
+    color: var(--muted);
 }
 
 .event-location {
-    font-size: 13px;
     margin: 0 0 14px;
     color: var(--txt);
+    font-size: 13px;
 }
 
 .btn-tickets {
     display: block;
-    text-align: center;
-    background-color: #5b5858;
-    color: white;
-    text-decoration: none;
     padding: 10px 0;
     border-radius: 15px;
+    background-color: #5b5858;
+    color: white;
+    text-align: center;
+    text-decoration: none;
 }
 
-/*===============================*/
-/*     6. Galery                 */
-/*===============================*/
-
+/* ===============================
+   9. Gallery
+   =============================== */
 
 #gallery {
     position: relative;
     z-index: 0; /* crea un contexto de apilamiento propio, contiene a sus hijos con z-index negativo */
-    overflow: hidden;
-    min-height: 100vh;
     display: flex;
     flex-direction: row;
     align-items: start;
     justify-content: flex-end;
+    min-height: 100vh;
+    overflow: hidden;
     background: var(--bg);
 }
 
 #gallery .info {
+    padding: 50px;
     color: var(--txt);
     text-align: right;
-    padding: 50px;
 }
 
 #gallery .info h1 {
@@ -626,14 +590,8 @@ section {
 .gallery-base-bg {
     position: absolute;
     inset: 0;
-    background-color: var(--bg);
     z-index: -2;
-}
-
-.bg-carousel {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
+    background-color: var(--bg);
 }
 
 .bg-carousel {
@@ -662,13 +620,14 @@ section {
     100%  { opacity: 0; }
 }
 
-/*===============================*/
-/*     7. Booking                */
-/*===============================*/
+/* ===============================
+   10. Booking
+   =============================== */
+
 
 #booking .info p {
-    color: var(--muted);
     margin-top: 14px;
+    color: var(--muted);
     line-height: 1.6;
 }
 
@@ -676,16 +635,22 @@ section {
     font-size: var(--font-size-h1);
 }
 
+#booking .info .img-wasp {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 .booking-form {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 30px;
+    width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    max-width: 500px;
-    width: 100%;
+    padding: 30px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
 }
 
 .booking-form .form-row {
@@ -695,14 +660,14 @@ section {
 
 .booking-form input,
 .booking-form textarea {
+    width: 100%;
+    padding: 12px 14px;
     background: var(--bg);
     border: 1px solid var(--line);
     border-radius: 8px;
-    padding: 12px 14px;
     color: var(--txt);
     font-family: var(--font-body);
     font-size: 14px;
-    width: 100%;
 }
 
 .booking-form input::placeholder,
@@ -721,14 +686,14 @@ section {
 }
 
 .btn-booking {
-    background: var(--accent);
-    color: white;
+    padding: 13px 0;
     border: none;
     border-radius: 8px;
-    padding: 13px 0;
+    background: var(--accent);
+    color: white;
     font-family: var(--font-body);
-    font-weight: 700;
     font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
     transition: opacity 0.2s ease;
 }
@@ -737,44 +702,38 @@ section {
     opacity: 0.85;
 }
 
-@media (max-width: 600px) {
-    .booking-form .form-row {
-        flex-direction: column;
-    }
-}
+/* ===============================
+   11. Footer
+   =============================== */
 
-
-
-/**/
-footer{
-    padding: 36px 0;
-    text-align:center;
-    color:var(--muted);
-    font-size:12px;
-    border-top:1px solid var(--line);
-    background: rgba(23, 23, 23);
+footer {
     height: 30px;
-
+    padding: 36px 0;
+    background: rgba(23, 23, 23);
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+    border-top: 1px solid var(--line);
 }
-footer .ig{
-    color:var(--txt);
-    font-weight:700;
+
+footer .ig {
+    color: var(--txt);
+    font-weight: 700;
     text-decoration: none;
 }
 
-/*===============================*/
-/*     8. BreakPoints            */
-/*===============================*/
+/* ===============================
+   12. Breakpoints
+   =============================== */
 
 /* Tablet */
 @media (max-width: 1024px) {
-    #about{
-        display: flex;
+    #about {
         flex-direction: column;
     }
 
     #djs {
-        height: auto;       /* ya no forzamos 100vh, dejamos que el contenido decida su alto */
+        height: auto;       /* ya no forzamos 100vh, el contenido decide su alto */
         min-height: 100vh;
         padding: 50px 20px;
     }
@@ -785,9 +744,24 @@ footer .ig{
     }
 
     .member-card {
-        min-width: 0;                     /* quitamos el 300px fijo que forzaba el overflow */
-        width: calc(50% - 10px);          /* 2 columnas, restando la mitad del gap (20px / 2) */
-        aspect-ratio: 3 / 4;              /* le da una altura propia, ya que .team no la reparte más */
+        min-width: 0;             /* quitamos el 300px fijo que forzaba el overflow */
+        width: calc(50% - 10px);  /* 2 columnas, restando la mitad del gap */
+        aspect-ratio: 3 / 4;      /* .team ya no reparte una altura propia */
+    }
+
+    #music {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #events .events {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    #booking {
+        flex-direction: column;
+        gap: 20px;
     }
 }
 
@@ -801,17 +775,13 @@ footer .ig{
         display: block;
     }
 
-    #about{
-        display: flex;
+    #about {
         flex-direction: column;
     }
 
-@media (max-width: 600px) {
     .team {
         flex-direction: column;
         flex-wrap: nowrap;
-        overflow-x: visible;           /* ya no necesitamos scroll horizontal */
-        scroll-snap-type: none;
         align-items: center;
         gap: 16px;
         padding: 5px 20px 20px;
@@ -820,9 +790,8 @@ footer .ig{
     .member-card {
         flex: none;
         width: 100%;
-        max-width: 480px;              /* evita que se vea gigante en celulares grandes */
-        aspect-ratio: 4 / 5;           /* un poco menos alta que el 3/4 de tablet, se ve mejor en columna */
-        scroll-snap-align: none;
+        max-width: 480px; /* evita que se vea gigante en celulares grandes */
+        aspect-ratio: 4 / 5;
     }
 
     #djs .info {
@@ -831,29 +800,24 @@ footer .ig{
         padding-right: 0;
     }
 
-    #music{
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
 
-    #events .events{
-        display: flex;
+    #events .events {
         flex-direction: column;
         align-items: center;
         gap: 20px;
     }
 
-    /* 1. Contenedor individual y perspectiva 3D */
     .flip-card {
         width: 100%;
-        max-width: 480px;              /* evita que se vea gigante en celulares grandes */
+        max-width: 480px;
     }
 
-    #booking{
-        display: flex;
+    .booking-form .form-row {
+        flex-direction: column;
+    }
+
+    #booking {
         flex-direction: column;
         gap: 20px;
     }
-}
 }
