@@ -10,6 +10,7 @@
     --txt: #f2f2f2;     /* texto principal */
     --muted: #9a9a9a;   /* texto secundario / descripciones */
     --accent: #ff1a1a;  /* acento rojo (botones, detalles, dot) */
+    --font-size-h1: clamp(1.5rem, 9vw, 3rem);
 }
 
 
@@ -173,6 +174,47 @@ section {
     display: none;
 }
 
+/* El botón que abre el menú (el ícono de hamburguesa) */
+.mobile-menu .dropdown-toggle {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    color: var(--txt);
+}
+
+.mobile-menu .dropdown-toggle:hover,
+.mobile-menu .dropdown-toggle:focus,
+.mobile-menu .dropdown-toggle:active {
+    background: var(--panel) !important;
+    border-color: var(--accent) !important;
+    color: var(--txt) !important;
+    box-shadow: none !important;
+}
+
+/* El panel desplegable en sí */
+.mobile-menu .dropdown-menu {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 8px;
+    min-width: 160px;
+}
+
+/* Cada opción del menú */
+.mobile-menu .dropdown-item {
+    color: var(--txt);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 6px;
+}
+
+/* Hover/focus de cada opción */
+.mobile-menu .dropdown-item:hover,
+.mobile-menu .dropdown-item:focus {
+    background: var(--accent);
+    color: white;
+}
+
 /*===============================*/
 /*     3. WELCOME                */
 /*===============================*/
@@ -197,7 +239,7 @@ section {
 
 
 #welcome h1 {
-    font-size: 100px;
+    font-size: clamp(2.5rem, 9vw, 6.25rem); /* min 40px, ideal 9% del ancho, max 100px */
     z-index: 2;
 }
 
@@ -228,7 +270,7 @@ section {
 
 
 #about h1 {
-    font-size: 55px;
+    font-size: var(--font-size-h1);
 }
 
 
@@ -272,7 +314,7 @@ section {
 }
 
 #djs .info h1{
-    font-size: 55px;
+    font-size: var(--font-size-h1);
 }
 
 .team{
@@ -282,6 +324,10 @@ section {
     flex: 1;        /* toma todo el alto restante de #djs */
     min-height: 0;  /* truco necesario: sin esto, flex no deja que el hijo se achique por debajo de su contenido */
     padding: 5px 20px 10px 20px;
+}
+
+.team h3{
+    font-size: 1.5rem;
 }
 
 .member-card {
@@ -368,7 +414,7 @@ section {
 }
 
 #music .info h1 {
-    font-size: 55px;
+    font-size: var(--font-size-h1);
 }
 
 
@@ -455,7 +501,7 @@ section {
 #events .info h1{
     color: var(--txt);
     padding-bottom: 10px;
-    font-size: 55px;
+    font-size: var(--font-size-h1);
 }
 
 #events .events{
@@ -574,7 +620,7 @@ section {
 }
 
 #gallery .info h1 {
-    font-size: 55px;
+    font-size: var(--font-size-h1);
 }
 
 .gallery-base-bg {
@@ -627,7 +673,7 @@ section {
 }
 
 #booking .info h1 {
-    font-size: 55px;
+    font-size: var(--font-size-h1);
 }
 
 .booking-form {
@@ -714,4 +760,100 @@ footer .ig{
     color:var(--txt);
     font-weight:700;
     text-decoration: none;
+}
+
+/*===============================*/
+/*     8. BreakPoints            */
+/*===============================*/
+
+/* Tablet */
+@media (max-width: 1024px) {
+    #about{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #djs {
+        height: auto;       /* ya no forzamos 100vh, dejamos que el contenido decida su alto */
+        min-height: 100vh;
+        padding: 50px 20px;
+    }
+
+    .team {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .member-card {
+        min-width: 0;                     /* quitamos el 300px fijo que forzaba el overflow */
+        width: calc(50% - 10px);          /* 2 columnas, restando la mitad del gap (20px / 2) */
+        aspect-ratio: 3 / 4;              /* le da una altura propia, ya que .team no la reparte más */
+    }
+}
+
+/* Celular */
+@media (max-width: 600px) {
+    .main-nav {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    #about{
+        display: flex;
+        flex-direction: column;
+    }
+
+@media (max-width: 600px) {
+    .team {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        overflow-x: visible;           /* ya no necesitamos scroll horizontal */
+        scroll-snap-type: none;
+        align-items: center;
+        gap: 16px;
+        padding: 5px 20px 20px;
+    }
+
+    .member-card {
+        flex: none;
+        width: 100%;
+        max-width: 480px;              /* evita que se vea gigante en celulares grandes */
+        aspect-ratio: 4 / 5;           /* un poco menos alta que el 3/4 de tablet, se ve mejor en columna */
+        scroll-snap-align: none;
+    }
+
+    #djs .info {
+        align-self: center;
+        text-align: center;
+        padding-right: 0;
+    }
+
+    #music{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #events .events{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    /* 1. Contenedor individual y perspectiva 3D */
+    .flip-card {
+        width: 100%;
+        max-width: 480px;              /* evita que se vea gigante en celulares grandes */
+    }
+
+    #booking{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}
 }
